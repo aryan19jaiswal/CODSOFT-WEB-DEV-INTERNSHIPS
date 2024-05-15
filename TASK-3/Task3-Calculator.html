@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Improved Calculator</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+    }
+    .calculator {
+        width: 320px; /* Increased the width */
+        margin: 50px auto;
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        padding: 10px;
+        background-color: #fff;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+    }
+    .calculator-heading {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #333;
+        text-transform: uppercase;
+    }
+    .calculator-screen {
+        width: 100%;
+        height: 50px;
+        font-size: 24px;
+        text-align: right;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding: 5px;
+        box-sizing: border-box;
+        background-color: #eee;
+    }
+    .calculator-buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 5px;
+    }
+    .calculator-buttons button {
+        width: calc(100% - 5px);
+        height: 50px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #f9f9f9;
+        transition: background-color 0.3s ease;
+        color: #333;
+    }
+    .calculator-buttons button:hover {
+        background-color: #e6e6e6;
+    }
+    .operator {
+        background-color: #4a4a4a;
+        color: #fff;
+    }
+    .operator:hover {
+        background-color: #333;
+    }
+    .equals {
+        background-color: #4caf50;
+        color: #fff;
+    }
+    .equals:hover {
+        background-color: #398a3f;
+    }
+</style>
+</head>
+<body>
+
+<div class="calculator">
+    <h2 class="calculator-heading">CALCULATOR</h2>
+    <div class="calculator-screen" id="calculator-screen">0</div>
+    <div class="calculator-buttons">
+        <button onclick="clearScreen()">C</button>
+        <button onclick="appendInput('7')">7</button>
+        <button onclick="appendInput('8')">8</button>
+        <button class="operator" onclick="appendInput('+')">+</button>
+        <button onclick="appendInput('4')">4</button>
+        <button onclick="appendInput('5')">5</button>
+        <button onclick="appendInput('6')">6</button>
+        <button class="operator" onclick="appendInput('-')">-</button>
+        <button onclick="appendInput('1')">1</button>
+        <button onclick="appendInput('2')">2</button>
+        <button onclick="appendInput('3')">3</button>
+        <button class="operator" onclick="appendInput('*')">*</button>
+        <button onclick="appendInput('9')">9</button> 
+        <button onclick="appendInput('0')">0</button>
+        <button onclick="appendInput('.')">.</button>
+        <button class="operator" onclick="appendInput('/')">/</button>
+        <button class="equals" onclick="calculate()">=</button>
+        
+    </div>
+</div>
+
+<script>
+    let screen = document.getElementById('calculator-screen');
+    let input = '';
+
+    function appendInput(value) {
+        input += value;
+        screen.textContent = input;
+    }
+
+    function clearScreen() {
+        input = '';
+        screen.textContent = '0';
+    }
+
+    function calculate() {
+        try {
+            let result = eval(input);
+            screen.textContent = result;
+            input = result.toString(); 
+        } catch (error) {
+            screen.textContent = 'Error';
+            input = '';
+        }
+    }
+</script>
+
+</body>
+</html>
